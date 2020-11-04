@@ -21,3 +21,6 @@ Route::get('/', function () {
 Route::resource('posts', 'PostsController');
 
 Route::get('/contact', 'PostsController@contact');
+
+Route::get('/lessons', 'LessonController@index')->name('lessons.index');
+Route::get('/lessons/{lesson}', 'LessonController@show')->name('lessons.show');
