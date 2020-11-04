@@ -17,10 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/post/{id}', 'PostsController@index');
-Route::resource('posts', 'PostsController');
+Auth::routes();
 
-Route::get('/contact', 'PostsController@contact');
+Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/lessons', 'LessonController@index')->name('lessons.index');
-Route::get('/lessons/{lesson}', 'LessonController@show')->name('lessons.show');
+Route::middleware('auth')->group(function () {
+    Route::get('/lessons', 'LessonController@index')->name('lessons.index');
+    Route::get('/lessons/{lesson}', 'LessonController@show')->name('lessons.show');
+});
