@@ -5,10 +5,10 @@
 
 <!-- ここから追加 -->
 <div>
-  @if ($lesson->vacancyLevel->slug() === 'empty')
+  @can('reserve', $lesson)
     <span class="btn btn-primary disabled">予約できません</span>
-  @else
+    @else
     <button class="btn btn-primary">このレッスンを予約する</button>
-  @endif
+  @endcan
 </div>
 <!-- ここまで追加 -->
