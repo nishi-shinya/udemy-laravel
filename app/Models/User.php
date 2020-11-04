@@ -42,21 +42,21 @@ class User extends Authenticatable
     ];
     
     /**
-     * @return bool
+     * @param Lesson $lesson
+     * @return void
+     * @throws \Exception
      */
-    public function canReserve(Lesson $lesson): bool
+    public function canReserve(Lesson $lesson): void
     {
         if ($lesson->remainingCount() === 0) {
-            return false;
+            throw new \Exception('レッスンの予約可能上限に達しています。');
         }
         
         if ($this->plan === 'regular') {
             if ($this->reservationCountThisMonth() >= 5) {
-                return false;
+                throw new \Exception('今月の予約がプランの上限に達しています。');
             }
         }
-        
-        return true;
     }
     
     public function reservations (): HasMany
