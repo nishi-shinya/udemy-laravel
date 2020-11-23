@@ -12,6 +12,7 @@ class ReserveControllerTest extends TestCase
 {
     use RefreshDatabase;
     use CreatesUser;
+    
 
     public function testInvoke()
     {
